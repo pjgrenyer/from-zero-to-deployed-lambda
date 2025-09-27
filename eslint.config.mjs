@@ -6,7 +6,7 @@ export default [
     {
         files: ['**/*.{js,mjs,cjs,ts}'],
         rules: {
-            'no-console': 'error',
+            'no-console': 'off',            
         },
     },
     {

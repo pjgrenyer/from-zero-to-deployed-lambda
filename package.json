@@ -1,6 +1,6 @@
 {
     "name": "node-typescript-template",
-    "version": "1.1.2",
+    "version": "0.0.1",
     "description": "A template node typescript project",
     "main": "index.js",
     "engines": {
@@ -13,7 +13,12 @@
         "dev": "npm run build && node dist/index.js",
         "test": "jest --coverage",
         "format": "prettier --write 'src/**/*.ts' 'test/**/*.ts' './*.js' './*.json' '!./package-lock.json'",
-        "lint": "eslint . --ext .ts"
+        "lint": "eslint . --ext .ts",
+        "package": "repack-zip . ${npm_package_name}-${npm_package_version}.zip",
+        "upload": "aws s3 cp ${npm_package_name}-${npm_package_version}.zip s3://from-zero-to-deployed/${npm_package_name}-${npm_package_version}.zip",
+        "publish": "aws lambda update-function-code --function-name from-zero-to-deployed --s3-bucket from-zero-to-deployed --s3-key ${npm_package_name}-${npm_package_version}.zip",
+        "package-and-deploy": "npm run build && npm run package && npm run upload && npm run package",
+        "execute": "aws lambda invoke --function-name from-zero-to-deployed --payload file://payload.json --cli-binary-format raw-in-base64-out response.json && more response.json"
     },
     "repository": {
         "type": "git",
@@ -30,6 +35,7 @@
     },
     "homepage": "https://github.com/pjgrenyer/node-typescript-template#readme",
     "dependencies": {
+        "repack-zip": "^0.2.8",
         "typescript": "^5.9.2"
     },
     "devDependencies": {
@@ -48,5 +54,21 @@
         "supertest": "^7.1.4",
         "ts-node": "^10.9.2",
         "typescript-eslint": "^8.43.0"
+    },
+    "repackZipConfig": {
+        "excludes": [
+            "*.zip",
+            "*.mjs",
+            "*.js",
+            "*.ts",
+            "*.mjs",
+            "*.md",
+            "test/**",
+            "LICENSE",
+            "src/**",
+            "coverage/**",
+            "package-lock.json",
+            "tsconfig.json"
+        ]
     }
 }

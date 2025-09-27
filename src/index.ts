@@ -1,6 +1,8 @@
-const main = () => {
-    // eslint-disable-next-line no-console
-    console.log('Hello, world!');
+export const handler = async (event: { text: string }) => {
+    console.log(event);
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify(event, null, 2),
+    };
+    return response;
 };
-
-main();
