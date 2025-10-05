@@ -1,11 +1,13 @@
-# node-typescript-template
-A template node typescript project
+# Code change 1
 
-# Useful Links
+export const handler = async (event: { text: string }) => {
+    console.log(event);
+    const response = {
+        body: {
+            text: event.text,
+            output: event.text
+        },
+    };
+    return response;
+};
 
-https://docs.npmjs.com/updating-packages-downloaded-from-the-registry
-
-Example to update all to latest (including majors):
-
-npx npm-check-updates -u
-npm install

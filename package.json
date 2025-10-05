@@ -17,7 +17,7 @@
         "package": "repack-zip . ${npm_package_name}-${npm_package_version}.zip",
         "upload": "aws s3 cp ${npm_package_name}-${npm_package_version}.zip s3://from-zero-to-deployed/${npm_package_name}-${npm_package_version}.zip",
         "publish": "aws lambda update-function-code --function-name from-zero-to-deployed --s3-bucket from-zero-to-deployed --s3-key ${npm_package_name}-${npm_package_version}.zip",
-        "package-and-deploy": "npm run build && npm run package && npm run upload && npm run package",
+        "package-and-deploy": "npm run build && npm run package && npm run upload && npm run publish",
         "execute": "aws lambda invoke --function-name from-zero-to-deployed --payload file://payload.json --cli-binary-format raw-in-base64-out response.json && more response.json"
     },
     "repository": {
