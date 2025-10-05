@@ -11,3 +11,19 @@ export const handler = async (event: { text: string }) => {
     return response;
 };
 
+# Code change 2
+import { reverse } from "./reverse";
+
+export const handler = async (event: { text: string }) => {
+    console.log(event);
+    const response = {
+        body: {
+            text: event.text,
+            output: reverse(event.text)
+        },
+    };
+    return response;
+};
+
+
+
