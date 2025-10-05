@@ -1,12 +1,8 @@
-import { reverse } from './reverse';
-
 export const handler = async (event: { text: string }) => {
     console.log(event);
     const response = {
-        body: {
-            text: event.text,
-            output: reverse(event.text),
-        },
+        statusCode: 200,
+        body: JSON.stringify(event, null, 2),
     };
     return response;
 };
