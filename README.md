@@ -1,4 +1,4 @@
-# Code change 1
+# Code change 1 - all in one
 
 export const handler = async (event: { text: string }) => {
     console.log(event);
@@ -11,7 +11,7 @@ export const handler = async (event: { text: string }) => {
     return response;
 };
 
-# Code change 2
+# Code change 2 - github actions
 
 import { reverse } from "./reverse";
 
@@ -26,7 +26,7 @@ export const handler = async (event: { text: string }) => {
     return response;
 };
 
-# Code Change 3
+# Code Change 3 - http call
 
 import { reverse } from './reverse';
 import { HttpRequest, toBody } from './to-body';
