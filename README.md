@@ -26,6 +26,10 @@ export const handler = async (event: { text: string }) => {
     return response;
 };
 
+# Curl
+curl -X POST -H "Content-Type: application/json" -d @payload.json https://<>.lambda-url.eu-west-2.on.aws/
+
+
 # Code Change 3 - http call
 
 import { reverse } from './reverse';
